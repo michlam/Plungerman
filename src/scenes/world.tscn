@@ -1,12 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7tsslg0kxlq8"]
+[gd_scene load_steps=6 format=3 uid="uid://b7tsslg0kxlq8"]
 
 [ext_resource type="PackedScene" uid="uid://1lajtf8h85if" path="res://src/scenes/player.tscn" id="2_d67km"]
+[ext_resource type="ArrayMesh" uid="uid://brt0jkg1gd623" path="res://assets/City.obj" id="2_x3u3n"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4qkb"]
-albedo_color = Color(1, 0.470588, 1, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jx2xr"]
+albedo_color = Color(0.109804, 0.0588235, 1, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_yn68c"]
-material = SubResource("StandardMaterial3D_y4qkb")
+[sub_resource type="BoxMesh" id="BoxMesh_elbq3"]
+material = SubResource("StandardMaterial3D_jx2xr")
+size = Vector3(200, 2, 200)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y5mqw"]
+data = PackedVector3Array(50000, 0, 50000, -50000, 0, 50000, 50000, 0, -50000, -50000, 0, 50000, -50000, 0, -50000, 50000, 0, -50000)
 
 [node name="World" type="Node3D"]
 
@@ -15,6 +20,16 @@ material = SubResource("StandardMaterial3D_y4qkb")
 [node name="Sunlight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.845953, 0.0325004, -0.532266, -0.340679, -0.800828, 0.492557, -0.410245, 0.598011, 0.688536, -3738.53, 7584, -1408.94)
 
+[node name="City" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+mesh = ExtResource("2_x3u3n")
+skeleton = NodePath("")
+
 [node name="Floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
-mesh = SubResource("PlaneMesh_yn68c")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_elbq3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_y5mqw")

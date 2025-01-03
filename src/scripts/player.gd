@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
-@export var walk_speed = 50
-@export var run_speed = 125
-@export var jump_impulse = 100
-@export var gravity = 100
+@export var walk_speed = 2
+@export var run_speed = 5
+@export var jump_impulse = 10
+@export var gravity = 20
 @export var mouse_sensitivity = 0.0012
 @onready var camera = $Camera3D
 
@@ -36,15 +36,21 @@ func handle_movement(delta):
 		direction -= transform.basis.z
 	if Input.is_action_pressed("move_backward"):
 		direction += transform.basis.z
-	if Input.is_action_just_pressed("jump"):
-		velocity.y = jump_impulse
 	
 	direction = direction.rotated(Vector3.UP, camera.rotation.y).normalized()
 	
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
-	velocity.y -= gravity * delta
-	print("Position: ", position.y, ", Velocity: ", velocity.y)
+	
+	if !is_on_floor():
+		velocity.y -= gravity * delta
+	else:
+		if Input.is_action_just_pressed("jump"):
+			velocity.y = jump_impulse
+		else:
+			velocity.y = 0
+
+	print(is_on_floor())
 
 	move_and_slide()
 
