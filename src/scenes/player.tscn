@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://1lajtf8h85if"]
+
+[ext_resource type="Script" path="res://src/scripts/player.gd" id="1_grwtr"]
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.55095, 0)
+script = ExtResource("1_grwtr")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+current = true
