@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7tsslg0kxlq8"]
+
+[ext_resource type="ArrayMesh" uid="uid://brt0jkg1gd623" path="res://assets/City.obj" id="1_bp14g"]
+
+[node name="World" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_bp14g")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1502.69, -798.65)
+
+[node name="Sunlight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.845953, 0.0325004, -0.532266, -0.340679, -0.800828, 0.492557, -0.410245, 0.598011, 0.688536, -3738.53, 7584, -1408.94)
