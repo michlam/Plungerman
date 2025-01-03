@@ -50,8 +50,6 @@ func handle_movement(delta):
 		else:
 			velocity.y = 0
 
-	print(is_on_floor())
-
 	move_and_slide()
 
 

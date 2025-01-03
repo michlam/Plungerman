@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/scripts/player.gd" id="1_grwtr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kh4am"]
-size = Vector3(1, 3, 1)
+size = Vector3(0.5, 3, 0.5)
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
