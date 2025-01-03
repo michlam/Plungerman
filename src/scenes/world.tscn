@@ -67,6 +67,7 @@ transform = Transform3D(1, 0, 0, 0, 0.512672, 0.858584, 0, -0.858584, 0.512672, 
 transform = Transform3D(1, 0, 0, 0, -0.546731, 0.837309, 0, -0.837309, -0.546731, 7.01035, 49.0669, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_d67km")]
+collision_mask = 1
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

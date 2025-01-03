@@ -1,0 +1,44 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://cvu2w6hukotx5"
+path="res://.godot/imported/plunger.gltf-de275f801897287016a296917348446a.scn"
+
+[deps]
+
+source_file="res://assets/Plunger/plunger.gltf"
+dest_files=["res://.godot/imported/plunger.gltf-de275f801897287016a296917348446a.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"nodes": {
+"PATH:Sketchfab_model/4fd3ff3bb5b2419cbb45b9380e83e7cb_fbx/Object_2/RootNode/LowPoly/LowPoly_02 - Default_0": {
+"physics/layer": 4,
+"physics/mask": 5,
+"physics/shape_type": 2
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1
