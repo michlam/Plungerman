@@ -1,8 +1,13 @@
 extends CharacterBody3D
 
-@export var speed = 50
-@export var mouse_sensitivity = 0.001
+@export var walk_speed = 50
+@export var run_speed = 125
+@export var jump_impulse = 100
+@export var gravity = 100
+@export var mouse_sensitivity = 0.0012
 @onready var camera = $Camera3D
+
+var _snap_vector = Vector3.DOWN
 
 
 func _ready():
@@ -18,8 +23,11 @@ func _physics_process(delta):
 
 
 func handle_movement(delta):
-	var direction = Vector3.ZERO
+	var speed = walk_speed
+	if Input.is_action_pressed("run"):
+		speed = run_speed
 	
+	var direction = Vector3.ZERO
 	if Input.is_action_pressed("move_left"):
 		direction -= transform.basis.x
 	if Input.is_action_pressed("move_right"):
@@ -28,11 +36,16 @@ func handle_movement(delta):
 		direction -= transform.basis.z
 	if Input.is_action_pressed("move_backward"):
 		direction += transform.basis.z
+	if Input.is_action_just_pressed("jump"):
+		velocity.y = jump_impulse
 	
 	direction = direction.rotated(Vector3.UP, camera.rotation.y).normalized()
 	
-	velocity = direction * speed
-	velocity.y = 0
+	velocity.x = direction.x * speed
+	velocity.z = direction.z * speed
+	velocity.y -= gravity * delta
+	print("Position: ", position.y, ", Velocity: ", velocity.y)
+
 	move_and_slide()
 
 
