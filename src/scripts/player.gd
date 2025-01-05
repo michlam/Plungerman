@@ -10,6 +10,7 @@ extends CharacterBody3D
 var _snap_vector = Vector3.DOWN
 
 @export var plunger: PackedScene
+var direction = Vector3.ZERO
 
 
 func _ready():
@@ -28,6 +29,7 @@ func _physics_process(delta):
 func handle_plunger_input(delta):
 	if Input.is_action_just_pressed("shoot"):
 		var plunger_scene = plunger.instantiate()
+		plunger_scene.set_direction(direction); 
 		add_child(plunger_scene)
 
 # Handles WASD and jump inputs
@@ -36,7 +38,7 @@ func handle_movement(delta):
 	if Input.is_action_pressed("run"):
 		speed = run_speed
 	
-	var direction = Vector3.ZERO
+	direction = Vector3.ZERO
 	if Input.is_action_pressed("move_left"):
 		direction -= transform.basis.x
 	if Input.is_action_pressed("move_right"):
