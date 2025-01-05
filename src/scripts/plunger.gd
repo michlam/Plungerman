@@ -12,4 +12,5 @@ func set_direction(direction):
 		_direction = direction
 		
 	velocity.x = _direction.x * speed
+	velocity.y = _direction.y * speed
 	velocity.z = _direction.z * speed
