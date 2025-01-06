@@ -21,5 +21,4 @@ shape = SubResource("BoxShape3D_kh4am")
 
 [node name="Plunger" parent="." instance=ExtResource("2_t6w55")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.791044, 0)
-visible = false
 script = ExtResource("3_op8k5")
