@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://1lajtf8h85if"]
+[gd_scene load_steps=5 format=3 uid="uid://1lajtf8h85if"]
 
 [ext_resource type="Script" path="res://src/scripts/player.gd" id="1_grwtr"]
 [ext_resource type="PackedScene" uid="uid://bg8yttn7pny06" path="res://src/scenes/plunger.tscn" id="2_t6w55"]
+[ext_resource type="Script" path="res://src/scripts/plunger.gd" id="3_op8k5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kh4am"]
 size = Vector3(0.5, 3, 0.5)
@@ -11,10 +12,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_grwtr")
-plunger = ExtResource("2_t6w55")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_kh4am")
+
+[node name="Plunger" parent="." instance=ExtResource("2_t6w55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.791044, 0)
+visible = false
+script = ExtResource("3_op8k5")

@@ -4,12 +4,10 @@ extends CharacterBody3D
 @export var run_speed = 5
 @export var jump_impulse = 10
 @export var gravity = 20
-@export var mouse_sensitivity = 0.0015
+@export var mouse_sensitivity = 0.002
 @onready var camera = $Camera3D
+@onready var plunger = $Plunger
 
-var _snap_vector = Vector3.DOWN
-
-@export var plunger: PackedScene
 var direction = Vector3.ZERO
 
 
@@ -18,19 +16,18 @@ func _ready():
 
 
 func _process(delta):
-	handle_mouse_input(delta)
-	handle_plunger_input(delta)
+	handle_mouse_input()
+	handle_plunger_input()
 	
 
 func _physics_process(delta):
 	handle_movement(delta)
 
 
-func handle_plunger_input(delta):
+func handle_plunger_input():
 	if Input.is_action_just_pressed("shoot"):
-		var plunger_scene = plunger.instantiate()
-		plunger_scene.set_direction(direction); 
-		add_child(plunger_scene)
+		plunger.setup()
+
 
 # Handles WASD and jump inputs
 func handle_movement(delta):
@@ -48,7 +45,7 @@ func handle_movement(delta):
 	if Input.is_action_pressed("move_backward"):
 		direction += transform.basis.z
 	
-	direction = direction.rotated(Vector3.UP, camera.rotation.y).normalized()
+	direction = direction.normalized()
 	
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
@@ -65,7 +62,7 @@ func handle_movement(delta):
 
 
 # Handles camera movement with mouse
-func handle_mouse_input(delta):
+func handle_mouse_input():
 	var mouse_motion = Input.get_last_mouse_velocity()
 	rotation_degrees.x -= mouse_motion.y * mouse_sensitivity
 	rotation_degrees.x = clamp(rotation_degrees.x, -90.0, 90.0)
