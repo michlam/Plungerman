@@ -1,8 +1,13 @@
 # Plungerman
-Swing around a cityscape as Plungerman!
+Swing around a cityscape as Plungerman! 
 
 # Motivation
-After spending some time creating 2D games, I wanted to try my hand with some 3D. 
+After spending some time creating 2D games, I wanted to try my hand with some 3D. There are a few features that I wish to implement:
+- Basic movement with WASD and space bar.
+- Camera controls following mouse input.
+- Shooting a projectile.
+- Swinging following a spherical path in 3D space
+
 
 # Citations
 - Kenney Protoype Textures: 	https://kenney.nl/assets/prototype-textures
