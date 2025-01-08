@@ -1,17 +1,14 @@
-extends CharacterBody3D
+extends RayCast3D
 
-@export var speed = 10.0
-
-func setup():
-	position = Vector3(0, 0, 0)
-	visible = true
-	
-	var new_basis = get_parent().global_transform.basis
-	new_basis.x *= -abs(new_basis.x)
-	new_basis.y = -abs(new_basis.y)
-	print(new_basis)
-	velocity = Vector3.FORWARD * new_basis * speed
+@export var speed = 15.0
 
 
 func _physics_process(delta: float) -> void:
-	move_and_slide()
+	position += global_basis * Vector3.FORWARD * speed * delta
+	target_position = Vector3.FORWARD * speed * delta
+	
+	force_raycast_update()
+	var collider = get_collider()
+	if is_colliding():
+		global_position = get_collision_point()
+		set_physics_process(false)
