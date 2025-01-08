@@ -1,6 +1,6 @@
 extends RayCast3D
 
-@export var speed = 15.0
+@export var speed = 50.0
 
 
 func _physics_process(delta: float) -> void:

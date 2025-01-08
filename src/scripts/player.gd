@@ -8,6 +8,7 @@ extends CharacterBody3D
 @onready var camera = $Camera3D
 
 const PLUNGER_SCENE = preload("res://src/scenes/plunger.tscn")
+var plunger;
 
 var direction = Vector3.ZERO
 
@@ -27,9 +28,12 @@ func _physics_process(delta):
 
 func handle_plunger_input():
 	if Input.is_action_just_pressed("shoot"):
-		var plunger = PLUNGER_SCENE.instantiate()
+		plunger = PLUNGER_SCENE.instantiate()
 		add_child(plunger)
 		plunger.global_transform = global_transform
+	
+	if Input.is_action_just_released("shoot"):
+		plunger.queue_free()
 
 
 # Handles WASD and jump inputs
