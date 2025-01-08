@@ -3,8 +3,8 @@ extends CharacterBody3D
 @export var walk_speed = 2
 @export var run_speed = 5
 @export var jump_impulse = 10
-@export var pull_impulse = 50
-@export var max_air_speed = 30
+@export var pull_impulse = 60
+@export var max_air_speed = 60
 @export var gravity = 20
 @export var mouse_sensitivity = 0.002
 @onready var camera = $Camera3D
@@ -74,6 +74,9 @@ func handle_movement(delta):
 	
 	if !is_on_floor():
 		velocity.y -= gravity * delta
+		
+		if velocity.length() > max_air_speed:
+			velocity *= (max_air_speed / velocity.length())
 		
 		
 	else:
