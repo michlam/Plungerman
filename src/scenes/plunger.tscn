@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cvu2w6hukotx5" path="res://assets/Plunger/plunger.gltf" id="1_tbn8r"]
 
 [node name="Plunger" type="RayCast3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0332212)
 top_level = true
 script = ExtResource("1_eft37")
 
