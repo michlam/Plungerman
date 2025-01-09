@@ -11,6 +11,7 @@ extends CharacterBody3D
 
 const PLUNGER_SCENE = preload("res://src/scenes/plunger.tscn")
 var plunger;
+var rope;
 
 var direction = Vector3.ZERO
 
@@ -22,12 +23,39 @@ func _ready():
 func _process(delta):
 	handle_mouse_input()
 	handle_plunger_input()
+	handle_plunger_rope()
 	
 
 func _physics_process(delta):
 	handle_movement(delta)
 	handle_pull_input()
 	
+
+func line(pos1, pos2, color) -> MeshInstance3D:
+	var mesh_instance = MeshInstance3D.new()
+	var immediate_mesh = ImmediateMesh.new()
+	var material = ORMMaterial3D.new()
+	
+	mesh_instance.mesh = immediate_mesh
+	mesh_instance.cast_shadow = false
+	
+	immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES, material)
+	immediate_mesh.surface_add_vertex(pos1)
+	immediate_mesh.surface_add_vertex(pos2)
+	immediate_mesh.surface_end()
+	
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.albedo_color = color
+	
+	return mesh_instance
+
+
+func handle_plunger_rope():
+	if rope:
+		rope.queue_free()
+		rope = line(plunger.global_position, global_position, Color.BLACK)
+		get_tree().get_root().add_child(rope)
+
 
 func handle_pull_input():
 	if Input.is_action_just_pressed("pull"):
@@ -44,10 +72,15 @@ func handle_plunger_input():
 		add_child(plunger)
 		plunger.speed = plunger.speed + velocity.length()
 		plunger.global_transform = global_transform
+		
+		rope = line(plunger.global_position, global_position, Color.BLACK)
+		get_tree().get_root().add_child(rope)
 	
 	if Input.is_action_just_released("shoot"):
 		plunger.queue_free()
+		rope.queue_free()
 		plunger = null
+		rope = null
 
 
 # Handles WASD and jump inputs
