@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://1lajtf8h85if"]
+[gd_scene load_steps=4 format=3 uid="uid://1lajtf8h85if"]
 
 [ext_resource type="Script" path="res://src/scripts/player.gd" id="1_grwtr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kh4am"]
 size = Vector3(0.5, 3, 0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7jvsj"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.001
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -16,3 +21,7 @@ current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_kh4am")
+
+[node name="Rope" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00893601, 0.99996, 0, -0.99996, -0.00893601, 0, -0.707328, -0.577445)
+mesh = SubResource("CylinderMesh_7jvsj")
